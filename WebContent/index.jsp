@@ -21,7 +21,7 @@
 	<div class="section_inner">
 		<div class="container">
 			<h1>ログイン</h1>
-			<form class="login_form" action="/tweet_servlet/login" method="POST">
+			<form class="login_form" action="login" method="POST">
 				<label for="email">mail：</label>
 				<input id="email" type="email" name="mail"><br>
 				<label for="pass">pass：</label>
