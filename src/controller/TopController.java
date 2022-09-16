@@ -37,6 +37,15 @@ public class TopController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		String post = request.getParameter("post");
+
+		HttpSession session = request.getSession();
+		UserDto loginUser = (UserDto) session.getAttribute("loginUser");
+
+		TweetService tweetService = new TweetService();
+		tweetService.createTweet(loginUser.getId(), post);
+
 		doGet(request, response);
 	}
 }

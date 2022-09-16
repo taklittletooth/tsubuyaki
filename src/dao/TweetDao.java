@@ -46,4 +46,21 @@ public class TweetDao extends AbstractDao {
 		}
 		return tweetList;
 	}
+	public void create(int userId, String post) {
+		Connection conn = getConnection();
+		PreparedStatement pStmt = null;
+		String sql = "INSERT INTO tweets(user_id, post) VALUES(?, ?);";
+
+		try {
+			pStmt = conn.prepareStatement(sql);
+			pStmt.setInt(1, userId);
+			pStmt.setString(2, post);
+			pStmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			this.close(pStmt);
+			this.close(conn);
+		}
+	}
 }

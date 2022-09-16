@@ -18,7 +18,7 @@
 	List<TweetDto> tweetList = (List<TweetDto>) request.getAttribute("tweetList");
 %>
 
-%>
+
 
 <header>
 	<div class="container">

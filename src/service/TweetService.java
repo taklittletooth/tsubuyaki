@@ -12,4 +12,9 @@ public class TweetService {
 		List<TweetDto> tweetList = tweetDao.findAll();
 		return tweetList;
 	}
+	
+	public void createTweet(int userId, String post) {
+		TweetDao tweetDao = new TweetDao();
+		tweetDao.create(userId, post);
+	}
 }
