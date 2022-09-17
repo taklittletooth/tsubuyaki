@@ -46,6 +46,7 @@ public class TweetDao extends AbstractDao {
 		}
 		return tweetList;
 	}
+	
 	public void create(int userId, String post) {
 		Connection conn = getConnection();
 		PreparedStatement pStmt = null;
@@ -62,5 +63,39 @@ public class TweetDao extends AbstractDao {
 			this.close(pStmt);
 			this.close(conn);
 		}
+	}
+	
+	public List<TweetDto> findByUser(int userId) {
+		Connection conn = getConnection();
+		PreparedStatement pStmt = null;
+		ResultSet rs = null;
+		List<TweetDto> tweetList = new ArrayList<TweetDto>();
+		String sql = new StringBuilder("SELECT id, post, created_at, updated_at")
+				.append(" FROM tweets")
+				.append(" WHERE user_id = ?")
+				.append(" ORDER BY created_at DESC;")
+				.toString();
+
+		try {
+			pStmt = conn.prepareStatement(sql);
+			pStmt.setInt(1, userId);
+			rs = pStmt.executeQuery();
+
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				String post = rs.getString("post");
+				LocalDateTime createdAt = rs.getObject("created_at", LocalDateTime.class);
+				LocalDateTime updatedAt = rs.getObject("updated_at", LocalDateTime.class);
+				TweetDto tweet = new TweetDto(id, userId, post, createdAt, updatedAt);
+				tweetList.add(tweet);
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			this.close(rs);
+			this.close(pStmt);
+			this.close(conn);
+		}
+		return tweetList;
 	}
 }

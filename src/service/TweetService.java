@@ -17,4 +17,10 @@ public class TweetService {
 		TweetDao tweetDao = new TweetDao();
 		tweetDao.create(userId, post);
 	}
+	
+	public List<TweetDto> findUserTweets(int userId) {
+		TweetDao tweetDao = new TweetDao();
+		List<TweetDto> tweetList = tweetDao.findByUser(userId);
+		return tweetList;
+	}
 }
