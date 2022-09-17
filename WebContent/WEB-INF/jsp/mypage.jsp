@@ -14,13 +14,11 @@
 <body>
 <%
 	UserDto loginUser = (UserDto) session.getAttribute("loginUser");
-	List<TweetDto> tweetList = (List<TweetDto>) request.getAttribute("tweetList");
 %>
 
 
 
-<header>
-	<div class="container">
+<	<div class="container">
 		<div class="flex_parent">
 			<div class="logo">
 				<a href="/tweet_servlet/top">DigTweet
@@ -29,8 +27,13 @@
 			<nav>
 				<ul>
 					<%
-						if(loginUser != null) {
+						if (loginUser == null) {
 					%>
+					<li><a href="#">登録</a></li>
+					<%
+						} else {
+					%>
+					<li><a href="/tweet_servlet/mypage">マイページ</a></li>
 					<li><a href="/tweet_servlet/login">ログアウト</a></li>
 					<%
 						}
@@ -39,15 +42,16 @@
 			</nav>
 		</div>
 		<%
-			if(loginUser != null) {
+			if (loginUser != null) {
 		%>
-		<p class="small_text">こんにちは、<span class="user_name"><%= loginUser.getDisplayName() %></span>さん</p>
+		<p class="small_text">
+			こんにちは、<span class="user_name"><%= loginUser.getDisplayName() %></span>さん
+		</p>
 		<%
 			}
 		%>
 	</div>
 </header>
-
 
 <main id="mypage">
 	<div class="section_inner">
@@ -79,4 +83,8 @@
 	</div>
 </main>
 
-<%@ include file="/WEB-INF/jsp/template/footer.jsp"%>
+<footer class="flex_parent">
+	<p><small>&copy; tsubuyaki</small></p>
+</footer>
+</body>
+</html>
