@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="dto.UserDto"%>
+<%@ page import="dto.TweetDto"%>
+<%@ page import="java.util.List"%>
 
 
 
@@ -14,6 +16,7 @@
 <body>
 <%
 	UserDto loginUser = (UserDto) session.getAttribute("loginUser");
+	List<TweetDto> loginUserTweetList = (List<TweetDto>) request.getAttribute("loginUserTweetList");
 %>
 
 
@@ -52,7 +55,6 @@
 		%>
 	</div>
 </header>
-
 <main id="mypage">
 	<div class="section_inner">
 		<div class="container width_narrow">
@@ -79,6 +81,28 @@
 					<p><%= (loginUser.getProfile() != null) ? loginUser.getProfile() : "" %></p>
 				</div>
 			</div>
+			<%
+				for (TweetDto tweet : loginUserTweetList) {
+			%>
+<div class="tweet_box flex_parent">
+				<div class="tweet_text_box">
+					<p class="tweet_text"><%= tweet.getPost() %></p>
+					<p class="tweet_date small_text">
+						投稿日：<%= tweet.getCreatedAt() %>
+						<%
+							if (tweet.getUpdatedAt() != null) {
+						%>
+						<br>更新日：<%= tweet.getUpdatedAt() %>
+						<%
+							}
+						%>
+					</p>
+					<hr>
+				</div>
+			</div>
+			<%
+				}
+			%>
 		</div>
 	</div>
 </main>
