@@ -98,4 +98,21 @@ public class TweetDao extends AbstractDao {
 		}
 		return tweetList;
 	}
+	public void delete(int tweetId, int userId) {
+		Connection conn = getConnection();
+		PreparedStatement pStmt = null;
+		String sql = "DELETE FROM tweets WHERE id = ? AND user_id = ?;";
+
+		try {
+			pStmt = conn.prepareStatement(sql);
+			pStmt.setInt(1, tweetId);
+			pStmt.setInt(2, userId);
+			pStmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			this.close(pStmt);
+			this.close(conn);
+		}
+	}
 }
