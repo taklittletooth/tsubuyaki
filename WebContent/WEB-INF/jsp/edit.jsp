@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ page import="dto.UserDto"%>
 <%@ page import="dto.TweetDto"%>
 <%@ page import="java.util.List"%>
@@ -17,8 +17,6 @@
 	UserDto loginUser = (UserDto) session.getAttribute("loginUser");
 	List<TweetDto> tweetList = (List<TweetDto>) request.getAttribute("tweetList");
 %>
-
-
 
 <header>
 	<div class="container">
@@ -48,41 +46,21 @@
 		%>
 	</div>
 </header>
-<main id="top">
+<main id="edit">
 	<div class="section_inner">
-		<div class="container">
-			<h1>いまの気分を投稿しよう！</h1>
-			<form class="tweet_form" action="/tweet_servlet/top" method="POST">
-				<input type="text" name="post" placeholder="メッセージを入力" required>
-				<button type="submit">投稿</button>
-			</form>
-			<%
-				for (TweetDto tweet : tweetList) {
-			%>
-			<div
-				class="tweet_box flex_parent <%= (tweet.getUserId() == loginUser.getId()) ? "login_user" : "" %>">
-				<div class="tweet_text_box">
-					<p class="tweet_text"><%= tweet.getPost() %></p>
-					<P class="tweet_date small_text">
-						投稿日：<%= tweet.getCreatedAt() %>
-						<%
-							if (tweet.getUpdatedAt() != null) {
-						%>
-						<br>更新日：<%= tweet.getUpdatedAt() %>
-						<%
-							}
-						%>
-					</p>
-				</div>
+		<div class="container width_narrow">
+			<div class="bread_crumb">
+				<a href="/tweet_servlet/top">top</a> &gt; <a
+					href="/tweet_servlet/mypage">mypage</a> &gt; edit
 			</div>
-			<%
-				}
-			%>
+			<h1>投稿を修正</h1>
+			<form class="tweet_form" action="/tweet_servlet/edit" method="POST">
+				<input type="hidden" name="tweet_id" value="">
+				<input type="text" name="post" value="" required>
+				<button type="submit" name="action">更新</button>
+			</form>
 		</div>
 	</div>
 </main>
-<footer class="flex_parent">
-	<p><small>&copy; tsubuyaki</small></p>
-</footer>
-</body>
-</html>
+
+<jsp:include page="template/footer.jsp" />

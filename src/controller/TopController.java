@@ -20,8 +20,7 @@ public class TopController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/top.jsp");
-		dispatcher.forward(request, response);HttpSession session = request.getSession();
+		HttpSession session = request.getSession();
 		UserDto loginUser = (UserDto) session.getAttribute("loginUser");
 
 		if (loginUser == null) {
