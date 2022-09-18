@@ -84,7 +84,7 @@
 			<%
 				for (TweetDto tweet : loginUserTweetList) {
 			%>
-<div class="tweet_box flex_parent">
+	<div class="tweet_box flex_parent">
 				<div class="tweet_text_box">
 					<p class="tweet_text"><%= tweet.getPost() %></p>
 					<p class="tweet_date small_text">
@@ -98,6 +98,10 @@
 						%>
 					</p>
 					<hr>
+					<form class="delete_form" action="/tweet_servlet/edit" method="POST">
+						<input type="hidden" name="tweet_id" value="<%= tweet.getId() %>">
+						<button type="submit" name="action">削除</button>
+					</form>
 				</div>
 			</div>
 			<%
