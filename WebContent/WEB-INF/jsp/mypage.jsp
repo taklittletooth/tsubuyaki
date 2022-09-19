@@ -59,7 +59,7 @@
 	<div class="section_inner">
 		<div class="container width_narrow">
 			<div class="bread_crumb">
-				<a href="/tweet_servlet/top">top</a> &gt; mypage
+				<a href="/tsubuyaki/top">top</a> &gt; mypage
 			</div>
 			<h1>マイページ</h1>
 			<div class="profile_box">
@@ -102,7 +102,7 @@
 						onclick="location.href='/tsubuyaki/edit?id=<%= tweet.getId() %>'">編集</button>
 					<form class="delete_form" action="/tsubuyaki/edit" method="POST">
 						<input type="hidden" name="tweet_id" value="<%= tweet.getId() %>">
-						<button type="submit" name="action">削除</button>
+						<button type="submit" name="action" value="delete">削除</button>
 					</form>
 				</div>
 			</div>

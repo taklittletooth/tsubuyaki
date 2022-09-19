@@ -32,7 +32,7 @@ public class MypageController extends HttpServlet {
 			dispatcher.forward(request, response);
 
 		} else {
-			response.sendRedirect("/tweet_servlet");
+			response.sendRedirect("/tsubuyaki");
 		}
 	}
 

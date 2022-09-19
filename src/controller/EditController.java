@@ -27,7 +27,7 @@ public class EditController extends HttpServlet {
 		TweetDto tweet = tweetService.findUserTweet(tweetId, loginUser.getId());
 
 		if(tweet == null) {
-			response.sendRedirect("/tweet_servlet/mypage");
+			response.sendRedirect("/tsubuyaki/mypage");
 		} else {
 			request.setAttribute("tweet", tweet);
 
@@ -55,6 +55,6 @@ public class EditController extends HttpServlet {
 				tweetService.updateTweetById(tweetId, loginUser.getId(), post);
 			}
 		}
-		response.sendRedirect("/tweet_servlet/mypage");
+		response.sendRedirect("/tsubuyaki/mypage");
 	}	
 }
