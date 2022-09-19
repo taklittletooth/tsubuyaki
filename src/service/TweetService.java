@@ -32,5 +32,11 @@ public class TweetService {
 		TweetDao tweetDao = new TweetDao();
 		TweetDto tweetDto = tweetDao.findById(tweetId, userId);
 		return tweetDto;
+	
+	}
+	
+	public void updateTweetById(int tweetId, int userId, String post) {
+		TweetDao tweetDao = new TweetDao();
+		tweetDao.update(tweetId, userId, post);
 	}
 }

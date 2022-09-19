@@ -147,4 +147,23 @@ public class TweetDao extends AbstractDao {
 		}
 		return tweet;
 	}
+	public void update(int tweetId, int userId, String post) {
+		Connection conn = getConnection();
+		PreparedStatement pStmt = null;
+		String sql = "UPDATE tweets SET post = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ? AND user_id = ?;";
+
+		try {
+			pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1, post);
+			pStmt.setInt(2, tweetId);
+			pStmt.setInt(3, userId);
+			pStmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+
+		} finally {
+			this.close(pStmt);
+			this.close(conn);
+		}
+	}
 }

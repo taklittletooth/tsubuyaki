@@ -98,7 +98,9 @@
 						%>
 					</p>
 					<hr>
-					<form class="delete_form" action="/tweet_servlet/edit" method="POST">
+					<button type="button" class="edit_link"
+						onclick="location.href='/tsubuyaki/edit?id=<%= tweet.getId() %>'">編集</button>
+					<form class="delete_form" action="/tsubuyaki/edit" method="POST">
 						<input type="hidden" name="tweet_id" value="<%= tweet.getId() %>">
 						<button type="submit" name="action">削除</button>
 					</form>

@@ -43,9 +43,18 @@ public class EditController extends HttpServlet {
 		UserDto loginUser = (UserDto) session.getAttribute("loginUser");
 		TweetService tweetService = new TweetService();
 		int tweetId = Integer.parseInt(request.getParameter("tweet_id"));
+		String actionName = request.getParameter("action");
 
-		tweetService.deleteTweetById(tweetId, loginUser.getId());
 
+		if(actionName.equals("delete")) {
+			tweetService.deleteTweetById(tweetId, loginUser.getId());
+		} else if(actionName.equals("update")) {
+			String post = request.getParameter("post");
+
+			if (post != null && post.length() != 0) {
+				tweetService.updateTweetById(tweetId, loginUser.getId(), post);
+			}
+		}
 		response.sendRedirect("/tweet_servlet/mypage");
-	}
+	}	
 }

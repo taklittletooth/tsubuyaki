@@ -57,10 +57,10 @@
 					href="/tsubuaki/mypage">mypage</a> &gt; edit
 			</div>
 			<h1>投稿を修正</h1>
-			<form class="tweet_form" action="/tweet_servlet/edit" method="POST">
+			<form class="tweet_form" action="/tsubuyaki/edit" method="POST">
 				<input type="hidden" name="tweet_id" value="<%= tweet.getId() %>">
 				<input type="text" name="post" value="<%= tweet.getPost() %>" required>
-				<button type="submit" name="action">更新</button>
+				<button type="submit" name="action" value="update">更新</button>
 			</form>
 			<p class="tweet_date">
 				投稿日：<%= tweet.getCreatedAt() %>
