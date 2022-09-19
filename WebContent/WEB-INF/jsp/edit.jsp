@@ -12,7 +12,9 @@
 <title>　tsubuyaki</title>
 </head>
 <body>
-
+<%
+	TweetDto tweet = (TweetDto) request.getAttribute("tweet");
+%>
 <%
 	UserDto loginUser = (UserDto) session.getAttribute("loginUser");
 	List<TweetDto> tweetList = (List<TweetDto>) request.getAttribute("tweetList");
@@ -55,12 +57,25 @@
 			</div>
 			<h1>投稿を修正</h1>
 			<form class="tweet_form" action="/tweet_servlet/edit" method="POST">
-				<input type="hidden" name="tweet_id" value="">
-				<input type="text" name="post" value="" required>
+				<input type="hidden" name="tweet_id" value="<%= tweet.getId() %>">
+				<input type="text" name="post" value="<%= tweet.getPost() %>" required>
 				<button type="submit" name="action">更新</button>
 			</form>
+			<p class="tweet_date">
+				投稿日：<%= tweet.getCreatedAt() %>
+				<%
+					if (tweet.getUpdatedAt() != null) {
+				%>
+				<br>更新日：<%= tweet.getUpdatedAt() %>
+				<%
+					}
+				%>
+			</p>
 		</div>
 	</div>
 </main>
-
-<jsp:include page="template/footer.jsp" />
+<footer class="flex_parent">
+	<p><small>&copy; tsubuyaki</small></p>
+</footer>
+</body>
+</html>

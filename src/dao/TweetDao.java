@@ -115,4 +115,36 @@ public class TweetDao extends AbstractDao {
 			this.close(conn);
 		}
 	}
+	public TweetDto findById(int tweetId, int userId) {
+		Connection conn = getConnection();
+		PreparedStatement pStmt = null;
+		ResultSet rs = null;
+		TweetDto tweet = null;
+		String sql = new StringBuilder("SELECT id, post, created_at, updated_at")
+				.append(" FROM tweets")
+				.append(" WHERE id = ? AND user_id = ?;")
+				.toString();
+
+		try {
+			pStmt = conn.prepareStatement(sql);
+			pStmt.setInt(1, tweetId);
+			pStmt.setInt(2, userId);
+			rs = pStmt.executeQuery();
+
+			if (rs.next()) {
+				int id = rs.getInt("id");
+				String post = rs.getString("post");
+				LocalDateTime createdAt = rs.getObject("created_at", LocalDateTime.class);
+				LocalDateTime updatedAt = rs.getObject("updated_at", LocalDateTime.class);
+				tweet = new TweetDto(id, userId, post, createdAt, updatedAt);
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			this.close(rs);
+			this.close(pStmt);
+			this.close(conn);
+		}
+		return tweet;
+	}
 }

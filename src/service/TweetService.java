@@ -28,4 +28,9 @@ public class TweetService {
 		TweetDao tweetDao = new TweetDao();
 		tweetDao.delete(tweetId, userId);
 	}
+	public TweetDto findUserTweet(int tweetId, int userId) {
+		TweetDao tweetDao = new TweetDao();
+		TweetDto tweetDto = tweetDao.findById(tweetId, userId);
+		return tweetDto;
+	}
 }
