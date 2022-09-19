@@ -11,7 +11,7 @@
 	<div class="container">
 		<div class="flex_parent">
 			<div class="logo">
-				<a href="/tweet_servlet/top">Tweet
+				<a href="/tsubuyaki/top">Tweet
 				</a>
 			</div>
 		</div>

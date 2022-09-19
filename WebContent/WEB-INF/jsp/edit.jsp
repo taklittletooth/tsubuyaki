@@ -32,7 +32,8 @@
 					<%
 						if(loginUser != null) {
 					%>
-					<li><a href="/tweet_servlet/login">ログアウト</a></li>
+					<li><a href="/tsubuyaki/login">ログアウト</a></li>
+					<li><a href="/tsubuyaki/mypage">マイページ</a></li>
 					<%
 						}
 					%>
@@ -52,8 +53,8 @@
 	<div class="section_inner">
 		<div class="container width_narrow">
 			<div class="bread_crumb">
-				<a href="/tweet_servlet/top">top</a> &gt; <a
-					href="/tweet_servlet/mypage">mypage</a> &gt; edit
+				<a href="/tsubuyaki/top">top</a> &gt; <a
+					href="/tsubuaki/mypage">mypage</a> &gt; edit
 			</div>
 			<h1>投稿を修正</h1>
 			<form class="tweet_form" action="/tweet_servlet/edit" method="POST">

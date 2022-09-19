@@ -36,8 +36,8 @@
 					<%
 						} else {
 					%>
-					<li><a href="/tweet_servlet/mypage">マイページ</a></li>
-					<li><a href="/tweet_servlet/login">ログアウト</a></li>
+					<li><a href="/tsubuyaki/mypage">マイページ</a></li>
+					<li><a href="/tsubuyaki/login">ログアウト</a></li>
 					<%
 						}
 					%>

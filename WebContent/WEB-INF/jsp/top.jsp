@@ -32,7 +32,8 @@
 					<%
 						if(loginUser != null) {
 					%>
-					<li><a href="/tweet_servlet/login">ログアウト</a></li>
+					<li><a href="/tsubuyaki/login">ログアウト</a></li>
+					<li><a href="/tsubuyaki/mypage">マイページ</a></li>
 					<%
 						}
 					%>
@@ -52,7 +53,7 @@
 	<div class="section_inner">
 		<div class="container">
 			<h1>いまの気分を投稿しよう！</h1>
-			<form class="tweet_form" action="/tweet_servlet/top" method="POST">
+			<form class="tweet_form" action="/tsubuyaki/top" method="POST">
 				<input type="text" name="post" placeholder="メッセージを入力" required>
 				<button type="submit">投稿</button>
 			</form>
